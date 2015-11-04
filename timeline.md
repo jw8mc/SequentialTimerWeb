@@ -19,3 +19,13 @@
 
 ###Week 9?
 * At this point, I'm playing this by ear
+
+###Week 10
+* Finalize database design
+* Build DAO
+* Get OAuth2 REST working
+
+###Week 11
+* Get Calendar working
+* Get Tasks working
+* Work on UI rendering
