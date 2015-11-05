@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="dataSourceStorage">
+  <data-source name="MySQL - SequentialTimerApp@localhost" uuid="77094638-07a8-4656-ad20-441fefe07a24">
+    <database-info product="MySQL" version="5.7.9-log" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.35 ( Revision: 5fb9c5849535c13917c2cf9baaece6ef9693ef27 )">
+      <extra-name-characters>#@</extra-name-characters>
+      <identifier-quote-string>`</identifier-quote-string>
+    </database-info>
+    <case-sensitivity plain-identifiers="lower" quoted-identifiers="lower"/>
+    <schema name="" catalog="sequentialtimerapp"/>
+    <table name="anchor_timers" schema="" catalog="sequentialtimerapp" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="name" sqlType="VARCHAR" precision="30" scale="0" nullable="false" jdbcType="12"/>
+      <column name="time" sqlType="TIME" precision="8" scale="0" nullable="false" jdbcType="92"/>
+      <column name="snooze_length" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4" def="MA=="/>
+      <column name="repeat_settings" sqlType="VARCHAR" precision="15" scale="0" nullable="true" jdbcType="12" def="J2RhaWx5Jw=="/>
+      <column name="owner_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="anchor_timers_ibfk_1" columns="owner_id" ref-table="users" ref-schema="" ref-catalog="sequentialtimerapp" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="timer_sequences_ibfk_1" table="timer_sequences" schema="" catalog="sequentialtimerapp" columns="anchor_timer_id"/>
+    </table>
+    <table name="sequence_details" schema="" catalog="sequentialtimerapp" type="TABLE">
+      <column name="timer_sequence_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="sequential_timer_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="preceeding_timer_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <foreign-key name="sequence_details_ibfk_1" columns="timer_sequence_id" ref-table="timer_sequences" ref-schema="" ref-catalog="sequentialtimerapp" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="sequence_details_ibfk_2" columns="sequential_timer_id" ref-table="sequential_timers" ref-schema="" ref-catalog="sequentialtimerapp" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="sequence_details_ibfk_3" columns="preceeding_timer_id" ref-table="sequential_timers" ref-schema="" ref-catalog="sequentialtimerapp" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="sequential_timer" unique="false" columns="sequential_timer_id,preceeding_timer_id"/>
+      <index name="timer_sequence" unique="false" columns="timer_sequence_id"/>
+    </table>
+    <table name="sequential_timers" schema="" catalog="sequentialtimerapp" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="name" sqlType="VARCHAR" precision="30" scale="0" nullable="false" jdbcType="12"/>
+      <column name="length" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="snooze_length" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4" def="MA=="/>
+      <column name="owner_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="sequential_timers_ibfk_1" columns="owner_id" ref-table="users" ref-schema="" ref-catalog="sequentialtimerapp" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="sequence_details_ibfk_2" table="sequence_details" schema="" catalog="sequentialtimerapp" columns="sequential_timer_id"/>
+      <exported-key name="sequence_details_ibfk_3" table="sequence_details" schema="" catalog="sequentialtimerapp" columns="preceeding_timer_id"/>
+    </table>
+    <table name="timer_sequences" schema="" catalog="sequentialtimerapp" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="anchor_timer_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="number_of_timers" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="owner_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="timer_sequences_ibfk_1" columns="anchor_timer_id" ref-table="anchor_timers" ref-schema="" ref-catalog="sequentialtimerapp" ref-columns="id" update-rule="3" delete-rule="0" deferrability="2"/>
+      <foreign-key name="timer_sequences_ibfk_2" columns="owner_id" ref-table="users" ref-schema="" ref-catalog="sequentialtimerapp" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="sequence_details_ibfk_1" table="sequence_details" schema="" catalog="sequentialtimerapp" columns="timer_sequence_id"/>
+      <index name="anchor_timer" unique="false" columns="anchor_timer_id"/>
+    </table>
+    <table name="users" schema="" catalog="sequentialtimerapp" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="user_name" sqlType="VARCHAR" precision="15" scale="0" nullable="false" jdbcType="12"/>
+      <column name="user_pass" sqlType="VARCHAR" precision="30" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <exported-key name="anchor_timers_ibfk_1" table="anchor_timers" schema="" catalog="sequentialtimerapp" columns="owner_id"/>
+      <exported-key name="sequential_timers_ibfk_1" table="sequential_timers" schema="" catalog="sequentialtimerapp" columns="owner_id"/>
+      <exported-key name="timer_sequences_ibfk_2" table="timer_sequences" schema="" catalog="sequentialtimerapp" columns="owner_id"/>
+    </table>
+  </data-source>
+</component>

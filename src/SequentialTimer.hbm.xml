@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="User" table="users">
+        <meta attribute="class-description">
+            This class contains information about a user.
+        </meta>
+        <id name="id" type="int" column="id">
+            <generator class="native"/>
+        </id>
+        <property name="userName" column="user_name" type="string"/>
+        <property name="userPass" column="user_pass" type="string"/>
+    </class>
+
+    <class name="AnchorTimer" table="anchor_timers">
+        <meta attribute="class-description">
+            This class contains information for an anchor timer.
+        </meta>
+        <id name="id" type="int" column="id">
+            <generator class="native"/>
+        </id>
+        <property name="name" column="name" type="string"/>
+        <property name="time" column="time" type="TIME"/>
+        <property name="snoozeLength" column="snooze_length" type="int"/>
+        <property name="repeatSettings" column="repeat_settings" type="string"/>
+        <property name="ownerId" column="owner_id" type="int"/>
+    </class>
+
+    <class name="SequentialTimer" table="sequential_timers">
+        <meta attribute="class-description">
+            This class contains information for a sequential timer.
+        </meta>
+        <id name="id" type="int" column="id">
+            <generator class="native"/>
+        </id>
+        <property name="name" column="name" type="string"/>
+        <property name="length" column="length" type="int"/>
+        <property name="snoozeLength" column="snooze_length" type="int"/>
+        <property name="ownerId" column="owner_id" type="int"/>
+    </class>
+
+    <class name="TimerSequence" table="timer_sequences">
+        <meta attribute="class-description">
+            This class contains information about a sequence of timers.
+        </meta>
+        <id name="id" type="int" column="id">
+            <generator class="native"/>
+        </id>
+        <property name="anchorTimerId" column="anchor_timer_id" type="int"/>
+        <property name="numberOfTimers" column="number_of_timers" type="int"/>
+        <property name="ownerId" column="owner_id" type="int"/>
+    </class>
+
+    <class name="SequenceDetail" table="sequence_details">
+        <meta attribute="class-description">
+            This class contains information about a specific sequential timer in a specific sequence.
+            It has a compound key composed of all three fields (yeah, I know, it's bad).
+        </meta>
+        <property name="timerSequnceId" column="timer_sequence_id" type="int"/>
+        <property name="sequentialTimerId" column="sequential_timer_id" type="int"/>
+        <property name="preceedingTimerId" column="preceeding_timer_id" type="int"/>
+    </class>
+</hibernate-mapping>
