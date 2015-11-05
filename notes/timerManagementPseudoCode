@@ -1,0 +1,63 @@
+WHEN CREATING NEW TIMER >
+IF at least one Anchor Timer exists
+    prompt user to select existing Anchor Timer or create a new one
+    IF create new anchor
+        go create a new anchor
+    ELSE
+        check if anchor has associated sequence
+        IF yes
+            prompt to edit or delete existing sequence
+            IF edit
+                go edit existing sequence
+            ELSE
+                delete sequence, create new timer sequence
+        ELSE
+            create new timer sequence
+ELSE
+    create new anchor
+
+CREATE NEW ANCHOR >
+Use form to collect data, populate object, call create function in DAO
+
+EDIT EXISTING TIMER >
+Populate form with existing data by calling read function in DAO
+Let user name changes and submit form
+On submit, update timer object and call update function in DAO
+
+CREATE TIMER SEQUENCE >
+Pick anchor (existing or new)
+    Create TimerSequence object with AnchorTimer id and user id
+Add sequential timer (existing or new)
+    Create sequence details object - first sequential timer has preceeding timer id of 0
+    Store sequential timer id as variable to use for next timer
+Add another sequential timer
+    Create sequence details object with preceeding timer id being that of previously added timer
+    Store this timer's id as before
+Repeat until done
+When done, run sequenceDetailDAO method to get all records matching the new timer sequence id, get count of these records,
+    assign to timer sequence # of timers field
+
+EDIT TIMER SEQUENCE >
+IF deleting sequential timer
+    save preceeding timer id from timer to be deleted
+    edit timer that follows deleted timer to have preceeding timer id that the deleted timer had
+IF adding sequential timer
+    get preceeding timer id from timer that will follow the new sequential timer
+    set new timer's preceeding timer id to be that one
+    loop through rest of timer sequence and repeat id reassignment
+
+DELETE ANCHOR TIMER >
+Prompt to reassign timer sequence to new anchor
+Otherwise delete anchor timer, delete timer sequence, delete all sequence details from that timer sequence
+
+DELETE SEQUENTIAL TIMER >
+Prompt to reassign to different sequential timer
+IF reassign
+    FOR ALL SEQUENCES THAT USE THIS TIMER (via sequence detail dao method)
+    new timer gets preceeding timer id from old timer
+    following timer gets new timer's id as preceeding timer id
+IF delete
+    FOR ALL SEQUENCES THAT USE THIS TIMER (via sequence detail dao method)
+    formerly following timer gets assigned timer-to-be-deleted's preceeding timer id
+
+
