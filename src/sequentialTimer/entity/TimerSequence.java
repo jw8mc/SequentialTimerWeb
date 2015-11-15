@@ -35,9 +35,10 @@ public class TimerSequence {
      * numberOfTimers will be populated later by a query
      * @param id
      * @param anchorTimerId
+     * @param repeatSettings
      * @param ownerId
      */
-    public TimerSequence(int id, int anchorTimerId, int ownerId) {
+    public TimerSequence(int id, int anchorTimerId, String repeatSettings, int ownerId) {
         this.id = id;
         this.anchorTimerId = anchorTimerId;
         this.repeatSettings = repeatSettings;
