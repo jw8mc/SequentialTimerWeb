@@ -14,7 +14,6 @@ public class AnchorTimer {
     private String name;
     private Time time;
     private int snoozeLength;
-    private String repeatSettings;
     private int ownerId;
 
     public int getId() { return id; }
@@ -23,8 +22,6 @@ public class AnchorTimer {
     public void setName(String name) { this.name = name; }
     public int getSnoozeLength() { return snoozeLength; }
     public void setSnoozeLength(int snoozeLength) { this.snoozeLength = snoozeLength; }
-    public String getRepeatSettings() { return repeatSettings; }
-    public void setRepeatSettings(String repeatSettings) { this.repeatSettings = repeatSettings; }
     public Time getTime() { return time; }
     public void setTime(Time time) { this.time = time; }
     public int getOwnerId() { return ownerId; }
@@ -41,16 +38,14 @@ public class AnchorTimer {
      * @param name      a string naming the timer
      * @param time     an SQL time parameter for when the alarm should begin
      * @param snoozeLength      an int representing how long to snooze the alarm - if 0 snooze is disabled
-     * @param repeatSettings    a string representing when this alarm repeats
      * @param ownerId   the user who created the timer
      */
-    public AnchorTimer(int id, String name, Time time, int snoozeLength, String repeatSettings, int ownerId) {
+    public AnchorTimer(int id, String name, Time time, int snoozeLength, int ownerId) {
         this();
         this.id = id;
         this.name = name;
         this.time = time;
         this.snoozeLength = snoozeLength;
-        this.repeatSettings = repeatSettings;
         this.ownerId = ownerId;
     }
 
@@ -60,7 +55,7 @@ public class AnchorTimer {
      */
     @Override
     public String toString() {
-        return System.lineSeparator() + "Alarm: " + name + " (" + id + ") at " + time + " that repeats "
-                + repeatSettings + "." + System.lineSeparator() + "Snoozes for: " + snoozeLength + " minutes";
+        return System.lineSeparator() + "Alarm: " + name + " (" + id + ") at " + time + "."
+                + System.lineSeparator() + "Snoozes for: " + snoozeLength + " minutes";
     }
 }

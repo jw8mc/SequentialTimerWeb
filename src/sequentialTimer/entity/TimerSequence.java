@@ -10,6 +10,7 @@ public class TimerSequence {
 
     private int id;
     private int anchorTimerId;
+    private String repeatSettings;
     private int numberOfTimers;
     private int ownerId;
 
@@ -18,6 +19,8 @@ public class TimerSequence {
     public int getAnchorTimerId() { return anchorTimerId; }
     public void setAnchorTimerId(int anchorTimerId) { this.anchorTimerId = anchorTimerId; }
     public int getNumberOfTimers() { return numberOfTimers; }
+    public String getRepeatSettings() { return repeatSettings; }
+    public void setRepeatSettings(String repeatSettings) { this.repeatSettings = repeatSettings; }
     public void setNumberOfTimers(int numberOfTimers) { this.numberOfTimers = numberOfTimers; }
     public int getOwnerId() { return ownerId; }
     public void setOwnerId(int ownerId) { this.ownerId = ownerId; }
@@ -37,6 +40,7 @@ public class TimerSequence {
     public TimerSequence(int id, int anchorTimerId, int ownerId) {
         this.id = id;
         this.anchorTimerId = anchorTimerId;
+        this.repeatSettings = repeatSettings;
         this.ownerId = ownerId;
     }
 

@@ -12,7 +12,6 @@
       <column name="name" sqlType="VARCHAR" precision="30" scale="0" nullable="false" jdbcType="12"/>
       <column name="time" sqlType="TIME" precision="8" scale="0" nullable="false" jdbcType="92"/>
       <column name="snooze_length" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4" def="MA=="/>
-      <column name="repeat_settings" sqlType="VARCHAR" precision="15" scale="0" nullable="true" jdbcType="12" def="J2RhaWx5Jw=="/>
       <column name="owner_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
       <primary-key name="PRIMARY" columns="id"/>
       <foreign-key name="anchor_timers_ibfk_1" columns="owner_id" ref-table="users" ref-schema="" ref-catalog="sequentialtimerapp" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
@@ -44,6 +43,7 @@
       <column name="anchor_timer_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
       <column name="number_of_timers" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
       <column name="owner_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="repeat_settings" sqlType="VARCHAR" precision="100" scale="0" nullable="false" jdbcType="12"/>
       <primary-key name="PRIMARY" columns="id"/>
       <foreign-key name="timer_sequences_ibfk_1" columns="anchor_timer_id" ref-table="anchor_timers" ref-schema="" ref-catalog="sequentialtimerapp" ref-columns="id" update-rule="3" delete-rule="0" deferrability="2"/>
       <foreign-key name="timer_sequences_ibfk_2" columns="owner_id" ref-table="users" ref-schema="" ref-catalog="sequentialtimerapp" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
