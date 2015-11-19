@@ -29,5 +29,6 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" scope="PROVIDED" name="Hibernate 4.2.2-4.2.2" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="mysql-connector-java-5.1" level="project" />
   </component>
 </module>

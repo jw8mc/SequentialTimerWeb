@@ -20,11 +20,14 @@
     <table name="sequence_details" schema="" catalog="sequentialtimerapp" type="TABLE">
       <column name="timer_sequence_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
       <column name="sequential_timer_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
-      <column name="preceeding_timer_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="preceding_timer_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <primary-key name="PRIMARY" columns="id"/>
       <foreign-key name="sequence_details_ibfk_1" columns="timer_sequence_id" ref-table="timer_sequences" ref-schema="" ref-catalog="sequentialtimerapp" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
       <foreign-key name="sequence_details_ibfk_2" columns="sequential_timer_id" ref-table="sequential_timers" ref-schema="" ref-catalog="sequentialtimerapp" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
-      <foreign-key name="sequence_details_ibfk_3" columns="preceeding_timer_id" ref-table="sequential_timers" ref-schema="" ref-catalog="sequentialtimerapp" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
-      <index name="sequential_timer" unique="false" columns="sequential_timer_id,preceeding_timer_id"/>
+      <foreign-key name="sequence_details_ibfk_3" columns="preceding_timer_id" ref-table="sequential_timers" ref-schema="" ref-catalog="sequentialtimerapp" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="preceeding_timer_id" unique="false" columns="preceding_timer_id"/>
+      <index name="sequential_timer" unique="false" columns="sequential_timer_id,preceding_timer_id"/>
       <index name="timer_sequence" unique="false" columns="timer_sequence_id"/>
     </table>
     <table name="sequential_timers" schema="" catalog="sequentialtimerapp" type="TABLE">
@@ -36,7 +39,7 @@
       <primary-key name="PRIMARY" columns="id"/>
       <foreign-key name="sequential_timers_ibfk_1" columns="owner_id" ref-table="users" ref-schema="" ref-catalog="sequentialtimerapp" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
       <exported-key name="sequence_details_ibfk_2" table="sequence_details" schema="" catalog="sequentialtimerapp" columns="sequential_timer_id"/>
-      <exported-key name="sequence_details_ibfk_3" table="sequence_details" schema="" catalog="sequentialtimerapp" columns="preceeding_timer_id"/>
+      <exported-key name="sequence_details_ibfk_3" table="sequence_details" schema="" catalog="sequentialtimerapp" columns="preceding_timer_id"/>
     </table>
     <table name="timer_sequences" schema="" catalog="sequentialtimerapp" type="TABLE">
       <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>

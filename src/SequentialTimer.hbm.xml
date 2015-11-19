@@ -57,10 +57,12 @@
     <class name="sequentialTimer.entity.SequenceDetail" table="sequence_details">
         <meta attribute="class-description">
             This class contains information about a specific sequential timer in a specific sequence.
-            It has a compound key composed of all three fields (yeah, I know, it's bad).
         </meta>
+        <id name="id" type="int" column="id">
+            <generator class="native" />
+        </id>
         <property name="timerSequenceId" column="timer_sequence_id" type="int"/>
         <property name="sequentialTimerId" column="sequential_timer_id" type="int"/>
-        <property name="preceedingTimerId" column="preceeding_timer_id" type="int"/>
+        <property name="precedingTimerId" column="preceding_timer_id" type="int"/>
     </class>
 </hibernate-mapping>
