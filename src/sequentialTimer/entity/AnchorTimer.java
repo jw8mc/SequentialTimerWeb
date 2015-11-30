@@ -8,29 +8,20 @@ import java.sql.Time;
  * @author Jen Williams
  * @version 1.0
  */
-public class AnchorTimer {
+public class AnchorTimer extends TimerBase {
 
-    private int id;
-    private String name;
     private Time time;
-    private int snoozeLength;
-    private int ownerId;
 
-    public int getId() { return id; }
-    public void setId(int id) { this.id = id; }
-    public String getName() { return name; }
-    public void setName(String name) { this.name = name; }
-    public int getSnoozeLength() { return snoozeLength; }
-    public void setSnoozeLength(int snoozeLength) { this.snoozeLength = snoozeLength; }
     public Time getTime() { return time; }
     public void setTime(Time time) { this.time = time; }
-    public int getOwnerId() { return ownerId; }
-    public void setOwnerId(int ownerId) { this.ownerId = ownerId; }
+
 
     /**
-     * Empty contructor that takes no parameters.
+     * Empty constructor that takes no parameters.
      */
-    public AnchorTimer() {}
+    public AnchorTimer() {
+        setAcknowledgedState(false);
+    }
 
     /**
      * Constructor that takes six parameters to populate the data object.
@@ -42,11 +33,11 @@ public class AnchorTimer {
      */
     public AnchorTimer(int id, String name, Time time, int snoozeLength, int ownerId) {
         this();
-        this.id = id;
-        this.name = name;
+        setId(id);
+        setName(name);
         this.time = time;
-        this.snoozeLength = snoozeLength;
-        this.ownerId = ownerId;
+        setSnoozeLength(snoozeLength);
+        setOwnerId(ownerId);
     }
 
     /**
@@ -55,7 +46,7 @@ public class AnchorTimer {
      */
     @Override
     public String toString() {
-        return System.lineSeparator() + "Alarm: " + name + " (" + id + ") at " + time + "."
-                + System.lineSeparator() + "Snoozes for: " + snoozeLength + " minutes";
+        return System.lineSeparator() + "Alarm: " + getName() + " (" + getId()+ ") at " + time + "."
+                + System.lineSeparator() + "Snoozes for: " + getSnoozeLength() + " minutes";
     }
 }
