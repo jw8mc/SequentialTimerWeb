@@ -39,6 +39,7 @@ public class TimerSequence {
      * @param ownerId
      */
     public TimerSequence(int id, int anchorTimerId, String repeatSettings, int ownerId) {
+        this();
         this.id = id;
         this.anchorTimerId = anchorTimerId;
         this.repeatSettings = repeatSettings;

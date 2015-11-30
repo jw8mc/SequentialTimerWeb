@@ -34,6 +34,7 @@ public class SequenceDetail {
      * @param precedingTimerId      int that represents which timer this record should follow
      */
     public SequenceDetail(int timerSequenceId, int sequentialTimerId, int precedingTimerId) {
+        this();
         this.timerSequenceId = timerSequenceId;
         this.sequentialTimerId = sequentialTimerId;
         this.precedingTimerId = precedingTimerId;

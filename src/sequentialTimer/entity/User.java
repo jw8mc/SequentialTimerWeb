@@ -31,6 +31,7 @@ public class User {
      * @param userPass  a string representing the user's password
      */
     public User(int id, String userName, String userPass) {
+        this();
         this.id = id;
         this.userName = userName;
         this.userPass = userPass;
