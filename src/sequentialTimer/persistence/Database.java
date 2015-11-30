@@ -12,7 +12,7 @@ public class Database {
     private static Database instance = new Database();
     private Connection connection;
 
-    private Database() {}
+    public Database() {}
 
     public static Database getInstance() {
         return instance;
