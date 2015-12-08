@@ -40,23 +40,16 @@
                 <!-- CLOCK and TASK COLUMN -->
                 <div class="col-xs-4 main">
                     <div class="row" style="border-bottom: solid 10px black;">
+                        <!-- CLOCK BOX -->
                         <div class="col-xs-12 clock">
                             <h3 class="centered">CLOCK</h3>
                         </div>
                     </div>
                     <div class="row">
+                        <!-- KITTEN BOX -->
                         <div class="col-xs-12">
-                            <h3 class="centered">TASKS</h3>
-                            <hr />
-                            <div class="row">
-                                <div class="col-xs-4"><button class="btn btn-success btn-sm btn-block">New Task</button></div>
-                                <div class="col-xs-4"><button class="btn btn-warning btn-sm btn-block">Edit Task</button></div>
-                                <div class="col-xs-4"><button class="btn btn-danger btn-sm btn-block">Delete Task</button></div>
-                            </div>
-                            <hr />
-                            <div class="row"> <!-- REPEAT FOR EACH TASK -->
-                                <div class="col-xs-2">checkbox</div><div class="col-xs-10">label</div>
-                            </div>
+                            <c:import url="/imports/RESTfulKittens.jsp" />
+
                         </div>
                     </div>
                 </div>
@@ -71,9 +64,7 @@
                         <div class="col-xs-4"><button class="btn btn-danger btn-sm btn-block">Delete Event</button></div>
                     </div>
                     <hr />
-                    <div class="row"> <!-- REPEAT FOR EACH EVENT -->
-                        <div class="col-xs-2">time</div><div class="col-xs-10">label</div>
-                    </div>
+                    <c:import url="/imports/CalendarColumn.jsp" />
                 </div>
             </div>
         </div>

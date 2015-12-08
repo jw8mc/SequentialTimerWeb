@@ -11,7 +11,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Student on 11/30/2015.
+ * This class handles retrieving and processing a sequence of timers.
+ *
+ * @author  Jen Williams
+ * @version 1.0     11/30/2015
  */
 public class TimerListProcessing {
 

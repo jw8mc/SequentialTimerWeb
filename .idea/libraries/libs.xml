@@ -1,0 +1,14 @@
+<component name="libraryTable">
+  <library name="libs">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/calendar/google-api-services-calendar-v3-rev155-1.21.0.jar!/" />
+      <root url="file://$PROJECT_DIR$/lib/calendar/libs" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="file://$PROJECT_DIR$/lib/calendar/libs" />
+    </SOURCES>
+    <jarDirectory url="file://$PROJECT_DIR$/lib/calendar/libs" recursive="false" />
+    <jarDirectory url="file://$PROJECT_DIR$/lib/calendar/libs" recursive="false" type="SOURCES" />
+  </library>
+</component>
