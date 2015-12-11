@@ -11,6 +11,12 @@
 
 <h3 class="centered">TODAY'S KITTEN</h3>
 <div class="centered">
-    <a href="http://thecatapi.com"><img style="max-height: 500px; max-width: 100%;" src="http://thecatapi.com/api/images/get?format=src&type=jpg,png&size=sm"></a>
+    <!-- <a href="http://thecatapi.com"><img style="max-height: 500px; max-width: 100%;" src="http://thecatapi.com/api/images/get?format=src&type=jpg,png&size=sm"></a> -->
+    <%
+        CatApiConsumer consumer = new CatApiConsumer();
+        String kittenImg = consumer.getReturnedKitten();
+    %>
+
+    <%= kittenImg %>
 </div>
 

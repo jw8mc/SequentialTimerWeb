@@ -18,6 +18,7 @@ import com.google.api.services.calendar.model.*;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -35,7 +36,7 @@ public class GoogleCalendarConsumer {
     private static final List<String> SCOPES =
             Arrays.asList(CalendarScopes.CALENDAR_READONLY);
 
-    private List<Event> items;
+    private static List<Event> items = new ArrayList<Event>();
     public void setItemsList(List<Event> items) {
         this.items = items;
     }
@@ -68,8 +69,7 @@ public class GoogleCalendarConsumer {
         // Load client secrets.
         InputStream in =
                 GoogleCalendarConsumer.class.getResourceAsStream("/client_secret.json");
-        GoogleClientSecrets clientSecrets =
-                GoogleClientSecrets.load(JSON_FACTORY, new InputStreamReader(in));
+        GoogleClientSecrets clientSecrets = GoogleClientSecrets.load(JSON_FACTORY, new InputStreamReader(in));
 
         // Build flow and trigger user authorization request.
         GoogleAuthorizationCodeFlow flow =
@@ -102,8 +102,7 @@ public class GoogleCalendarConsumer {
         // Build a new authorized API client service.
         // Note: Do not confuse this class with the
         //   com.google.api.services.calendar.model.Calendar class.
-        com.google.api.services.calendar.Calendar service =
-                getCalendarService();
+        com.google.api.services.calendar.Calendar service = getCalendarService();
 
         // List the next 10 events from the primary calendar.
         DateTime now = new DateTime(System.currentTimeMillis());
@@ -113,8 +112,8 @@ public class GoogleCalendarConsumer {
                 .setOrderBy("startTime")
                 .setSingleEvents(true)
                 .execute();
-        List<Event> items = events.getItems();
-
+        items = events.getItems();
+        System.out.println(items);
         return items;
     }
 }

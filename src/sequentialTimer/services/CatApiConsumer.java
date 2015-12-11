@@ -1,6 +1,8 @@
 package sequentialTimer.services;
 
-import javax.ws.rs.client.*;
+import javax.ws.rs.client.Client;
+import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
@@ -10,7 +12,7 @@ import javax.ws.rs.core.Response;
 public class CatApiConsumer {
 
     private Client client;
-    private String REST_SERVICE_URL = "http://thecatapi.com/api/images/get?api_key=NTMwNTc&format=html&category=kittens&type=jpg,png";
+    private String REST_SERVICE_URL = "http://thecatapi.com/api/images"; //?api_key=NTMwNTc&format=html
     private String returnedKitten;
 
     public Client getClient() {
@@ -30,6 +32,10 @@ public class CatApiConsumer {
     }
 
     public String getReturnedKitten() {
+
+        if (returnedKitten == null) {
+            runKittenService();
+        }
         return returnedKitten;
     }
 
@@ -37,13 +43,11 @@ public class CatApiConsumer {
         this.returnedKitten = returnedKitten;
     }
 
-    private void init() {
-        this.client = ClientBuilder.newClient();
-    }
 
     public void runKittenService() {
-        init();
-        Response kittenResponse = client.target(REST_SERVICE_URL).request(MediaType.TEXT_HTML).get();
-        returnedKitten = kittenResponse.toString();
+        client = ClientBuilder.newClient();
+        WebTarget target = client.target(REST_SERVICE_URL);
+        target = target.path("get").queryParam("api_key", "NTMwNTc").queryParam("format", "html");
+        returnedKitten = target.request(MediaType.TEXT_HTML).get(String.class);
     }
 }

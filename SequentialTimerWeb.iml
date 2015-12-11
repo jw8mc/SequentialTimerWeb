@@ -53,6 +53,7 @@
     <orderEntry type="library" scope="PROVIDED" name="org.glassfish.jersey.core:jersey-common:2.22" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="org.glassfish.jersey.core:jersey-client:2.22" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="swt:swt-win32:2.1.0" level="project" />
-    <orderEntry type="library" scope="PROVIDED" name="libs" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="commons-logging-1.1.1" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="google-api-services-calendar-v3-rev155-1.21.0" level="project" />
   </component>
 </module>
