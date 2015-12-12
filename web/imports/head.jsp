@@ -26,4 +26,8 @@
     div.clock {
       height: 200px;
     }
+    img {
+      max-height: 99%;
+      max-width: 99%;
+    }
   </style>

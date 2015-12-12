@@ -14,25 +14,27 @@
 
 <%
     List<Event> events = GoogleCalendarConsumer.retrieveCalendarEvents();
-    Map<DateTime, String> eventMap = new HashMap<DateTime, String>();
+    pageContext.setAttribute("events", events);
+
     for (Event e : events) {
         DateTime start = e.getStart().getDateTime();
         if (start == null) {
             start = e.getStart().getDate();
         }
         String desc = e.getSummary();
-        eventMap.put(start, desc);
-    }
-    pageContext.setAttribute("events", eventMap);
+        pageContext.setAttribute("time", start);
+        pageContext.setAttribute("desc", desc);
 %>
 
-<c:forEach var="event" items="${events}">
     <div class="row">
         <div class="col-xs-3">
-            ${event.key}
+            ${time}
         </div>
         <div class="col-xs-9">
-            ${event.value}
+            ${desc}
         </div>
     </div>
-</c:forEach>
+
+<%
+    }
+%>

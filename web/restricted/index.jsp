@@ -47,9 +47,8 @@
                     </div>
                     <div class="row">
                         <!-- KITTEN BOX -->
-                        <div style="max-width: 90%; max-height: 100%">
+                        <div>
                             <c:import url="/imports/RESTfulKittens.jsp" />
-
                         </div>
                     </div>
                 </div>

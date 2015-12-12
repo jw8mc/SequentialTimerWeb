@@ -49,7 +49,6 @@ public class GoogleCalendarConsumer {
         return items;
     }
 
-
     static {
         try {
             HTTP_TRANSPORT = GoogleNetHttpTransport.newTrustedTransport();

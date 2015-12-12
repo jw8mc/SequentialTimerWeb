@@ -47,7 +47,7 @@ public class CatApiConsumer {
     public void runKittenService() {
         client = ClientBuilder.newClient();
         WebTarget target = client.target(REST_SERVICE_URL);
-        target = target.path("get").queryParam("api_key", "NTMwNTc").queryParam("format", "html");
+        target = target.path("get").queryParam("api_key", "NTMwNTc").queryParam("format", "html").queryParam("size", "lg");
         returnedKitten = target.request(MediaType.TEXT_HTML).get(String.class);
     }
 }
