@@ -8,7 +8,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
-
+    int TEMPORARY_USER_ID_FOR_TESTING_ONLY = 1010;
 %>
 <div class="row">
     <div class="col-xs-12"></div>
