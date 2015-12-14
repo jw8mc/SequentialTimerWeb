@@ -6,6 +6,12 @@
   To change this template use File | Settings | File Templates.
 --%>
 
+<!-- REQUIRED FOR FLIPCLOCK -->
+<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>-->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="/imports/javascript/flipclock.js"></script>
+<link rel="stylesheet" href="/imports/flipclock.css" />
+
   <!-- BOOTSTRAP CDN LINKS -->
   <!-- Latest compiled and minified CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
@@ -27,7 +33,7 @@
       height: 200px;
     }
     img {
-      max-height: 99%;
       max-width: 99%;
+      max-height: 99%;
     }
   </style>
