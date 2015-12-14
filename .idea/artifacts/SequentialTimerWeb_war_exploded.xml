@@ -9,9 +9,9 @@
           <element id="dir-copy" path="$PROJECT_DIR$/resources" />
         </element>
         <element id="directory" name="lib">
+          <element id="dir-copy" path="$PROJECT_DIR$/lib" />
           <element id="library" level="project" name="commons-logging-1.1.1" />
           <element id="library" level="project" name="google-api-services-calendar-v3-rev155-1.21.0" />
-          <element id="dir-copy" path="$PROJECT_DIR$/lib" />
         </element>
       </element>
     </root>

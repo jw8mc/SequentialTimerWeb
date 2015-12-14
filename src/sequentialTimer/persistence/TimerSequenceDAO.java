@@ -6,7 +6,10 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import sequentialTimer.entity.*;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -87,30 +90,6 @@ public class TimerSequenceDAO {
     }
 
     /**
-     * Retrieves all timer_sequences records containing a given anchor timer id.
-     * @param timerId    the id of the anchor timer
-     * @return List<TimerSequence>    a List of matching records as TimerSequence objects
-     */
-    public List<TimerSequence> getAllTimerSequencesForAnchorTimer(int timerId) {
-        Session session = SessionFactoryProvider.getSessionFactory().openSession();
-        Transaction tx = null;
-        List<TimerSequence> ts = new ArrayList<TimerSequence>();
-
-        try {
-            tx = session.beginTransaction();
-            Query query = session.createQuery("from timer_sequences where anchor_timer_id = :timerId");
-            query.setInteger("timerId", timerId);
-            ts = query.list();
-        } catch (HibernateException hex) {
-            hex.printStackTrace();
-        } finally {
-            session.close();
-        }
-
-        return ts;
-    }
-
-    /**
      * Retrieves all timers owned by a given user.
      * @param userId    the id of the user
      * @return List<TimerSequence>    a List of matching records as TimerSequence objects
@@ -124,6 +103,34 @@ public class TimerSequenceDAO {
             tx = session.beginTransaction();
             Query query = session.createQuery("from timer_sequences where ownerId = :ownerId");
             query.setInteger("ownerId", userId);
+            timerSequences = query.list();
+        } catch (HibernateException hex) {
+            hex.printStackTrace();
+        } finally {
+            session.close();
+        }
+
+        return timerSequences;
+    }
+
+    /**
+     * Retrieves all timers owned by a given user that should be happening today.
+     * @param userId
+     * @return
+     */
+    public List<TimerSequence> getAllTimerSequencesForUserForToday(int userId) {
+        Session session = SessionFactoryProvider.getSessionFactory().openSession();
+        Transaction tx = null;
+        List<TimerSequence> timerSequences = new ArrayList<TimerSequence>();
+        Date today = new Date();
+        DateFormat format = new SimpleDateFormat("EEEE");
+        String weekday = format.format(today);
+
+        try {
+            tx = session.beginTransaction();
+            Query query = session.createQuery("from timer_sequences where ownerId = :ownerId and lower(repeat_settings) like :weekday");
+            query.setInteger("ownerId", userId);
+            query.setString("weekday", weekday);
             timerSequences = query.list();
         } catch (HibernateException hex) {
             hex.printStackTrace();

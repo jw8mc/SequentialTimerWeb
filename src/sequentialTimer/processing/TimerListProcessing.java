@@ -35,10 +35,8 @@ public class TimerListProcessing {
         timers = new ArrayList<TimerBase>();
 
         int sequenceId = sequence.getId();
-        //int anchorTimerId = sequence.getAnchorTimerId();
         List<SequentialTimer> sequentialTimers = new ArrayList<SequentialTimer>();
 
-       //AnchorTimer sequenceAnchorTimer = retrieveAnchorTimer(anchorTimerId);
         sequentialTimers = retrieveSequenceTimers(sequenceId);
 
         for (SequentialTimer timer : sequentialTimers) {

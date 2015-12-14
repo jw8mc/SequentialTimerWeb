@@ -1,6 +1,5 @@
 package sequentialTimer.processing;
 
-//import com.google.api.client.util.DateTime;
 import sequentialTimer.entity.TimerSequence;
 import sequentialTimer.persistence.TimerSequenceDAO;
 
@@ -30,20 +29,33 @@ public class AllTimerProcessing {
 
     public void processSequences() {
         retrieveSequences();
-        //sortSequences();
+        sortSequences();
+        for (TimerSequence ts : allSequences) {
+            //get all sequence timers in order
+            //add them to an array
+            //put it all into a json object
+            //add json object to json array
+        }
     }
 
+    /**
+     * Instantiates a TimerSequenceDAO object and uses it to retrieve all of the user's timer sequences that repeat
+     * today.
+     */
     private void retrieveSequences() {
         TimerSequenceDAO tsDao = new TimerSequenceDAO();
-        allSequences = tsDao.getAllTimerSequencesForUser(userId);
+        allSequences = tsDao.getAllTimerSequencesForUserForToday(userId);
     }
-/*
+
+    /**
+     * Uses a custom Comparator to sort the list of timer sequences by their start time.
+     */
     private void sortSequences() {
         Collections.sort(allSequences, new Comparator<TimerSequence>() {
             public int compare(TimerSequence ts1, TimerSequence ts2) {
-                DateTime a = ts1.
+                return ts1.getStartTime().compareTo(ts2.getStartTime());
             }
-        };
-    }*/
+        });
+    }
 
 }

@@ -1,7 +1,7 @@
 <component name="libraryTable">
   <library name="google-api-services-calendar-v3-rev155-1.21.0">
     <CLASSES>
-      <root url="jar://$USER_HOME$/Downloads/google-api-services-calendar-v3-rev155-java-1.21.0/calendar/google-api-services-calendar-v3-rev155-1.21.0.jar!/" />
+      <root url="jar://C:/lib/google-api-services-calendar-v3-rev155-java-1.21.0/calendar/google-api-services-calendar-v3-rev155-1.21.0.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />
