@@ -1,5 +1,7 @@
 package sequentialTimer.entity;
 
+import java.util.Date;
+
 /**
  * Represents a sequence of timers.
  *
@@ -9,15 +11,15 @@ package sequentialTimer.entity;
 public class TimerSequence {
 
     private int id;
-    private int anchorTimerId;
+    private Date startTime;
     private String repeatSettings;
     private int numberOfTimers;
     private int ownerId;
 
     public int getId() { return id; }
     public void setId(int id) { this.id = id; }
-    public int getAnchorTimerId() { return anchorTimerId; }
-    public void setAnchorTimerId(int anchorTimerId) { this.anchorTimerId = anchorTimerId; }
+    public Date getStartTime() { return startTime; }
+    public void setStartTime(Date startTime) { this.startTime = startTime; }
     public int getNumberOfTimers() { return numberOfTimers; }
     public String getRepeatSettings() { return repeatSettings; }
     public void setRepeatSettings(String repeatSettings) { this.repeatSettings = repeatSettings; }
@@ -34,14 +36,14 @@ public class TimerSequence {
      * Constructor that takes three parameters to populate the data object.
      * numberOfTimers will be populated later by a query
      * @param id
-     * @param anchorTimerId
+     * @param startTime
      * @param repeatSettings
      * @param ownerId
      */
-    public TimerSequence(int id, int anchorTimerId, String repeatSettings, int ownerId) {
+    public TimerSequence(int id, Date startTime, String repeatSettings, int ownerId) {
         this();
         this.id = id;
-        this.anchorTimerId = anchorTimerId;
+        this.startTime = startTime;
         this.repeatSettings = repeatSettings;
         this.ownerId = ownerId;
     }
@@ -53,7 +55,7 @@ public class TimerSequence {
     @Override
     public String toString() {
         return System.lineSeparator() + "Sequence ID: " + id
-                + System.lineSeparator() + "Anchor Timer ID: " + anchorTimerId
+                + System.lineSeparator() + "Anchor Timer ID: " + startTime
                 + System.lineSeparator() + "Owner: " + ownerId
                 + System.lineSeparator() + "Number of sequential timers:" + numberOfTimers;
     }

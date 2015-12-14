@@ -15,19 +15,6 @@
         <property name="userPass" column="user_pass" type="string"/>
     </class>
 
-    <class name="sequentialTimer.entity.AnchorTimer" table="anchor_timers">
-        <meta attribute="class-description">
-            This class contains information for an anchor timer.
-        </meta>
-        <id name="id" type="int" column="id">
-            <generator class="native"/>
-        </id>
-        <property name="name" column="name" type="string"/>
-        <property name="time" column="time" type="time"/>
-        <property name="snoozeLength" column="snooze_length" type="int"/>
-        <property name="ownerId" column="owner_id" type="int"/>
-    </class>
-
     <class name="sequentialTimer.entity.SequentialTimer" table="sequential_timers">
         <meta attribute="class-description">
             This class contains information for a sequential timer.
@@ -48,7 +35,7 @@
         <id name="id" type="int" column="id">
             <generator class="native"/>
         </id>
-        <property name="anchorTimerId" column="anchor_timer_id" type="int"/>
+        <property name="startTime" column="start_time" type="time"/>
         <property name="repeatSettings" column="repeat_settings" type="string"/>
         <property name="numberOfTimers" column="number_of_timers" type="int"/>
         <property name="ownerId" column="owner_id" type="int"/>

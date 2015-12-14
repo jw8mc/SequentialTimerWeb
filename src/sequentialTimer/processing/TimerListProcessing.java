@@ -2,7 +2,6 @@ package sequentialTimer.processing;
 
 import sequentialTimer.entity.*;
 import sequentialTimer.persistence.Database;
-import sequentialTimer.persistence.AnchorTimerDAO;
 import sequentialTimer.persistence.SequenceDetailDAO;
 import sequentialTimer.persistence.SequentialTimerDAO;
 
@@ -36,10 +35,10 @@ public class TimerListProcessing {
         timers = new ArrayList<TimerBase>();
 
         int sequenceId = sequence.getId();
-        int anchorTimerId = sequence.getAnchorTimerId();
+        //int anchorTimerId = sequence.getAnchorTimerId();
         List<SequentialTimer> sequentialTimers = new ArrayList<SequentialTimer>();
 
-        AnchorTimer sequenceAnchorTimer = retrieveAnchorTimer(anchorTimerId);
+       //AnchorTimer sequenceAnchorTimer = retrieveAnchorTimer(anchorTimerId);
         sequentialTimers = retrieveSequenceTimers(sequenceId);
 
         for (SequentialTimer timer : sequentialTimers) {
@@ -47,32 +46,6 @@ public class TimerListProcessing {
         }
 
         return timers;
-    }
-
-    /**
-     *
-     * @param anchorId
-     * @return
-     */
-    private AnchorTimer retrieveAnchorTimer(int anchorId) {
-
-        AnchorTimerDAO atDao = new AnchorTimerDAO();
-        AnchorTimer sequenceAnchor = null;
-
-        try {
-            Database.getInstance().connect();
-            sequenceAnchor = atDao.getAnchorTimerById(anchorId);
-            if (sequenceAnchor == null) {
-                //TODO: do a log thing here with sequence ID and such
-                System.err.println(new Exception("No valid Anchor Timer found."));
-            }
-        } catch (SQLException sqle) {
-            sqle.printStackTrace();
-        } catch (Exception exc) {
-            exc.printStackTrace();
-        }
-
-        return sequenceAnchor;
     }
 
     /**
