@@ -7,13 +7,17 @@
         <element id="directory" name="classes">
           <element id="module-output" name="SequentialTimerWeb" />
           <element id="dir-copy" path="$PROJECT_DIR$/resources" />
+          <element id="file-copy" path="$PROJECT_DIR$/src/hibernate.cfg.xml" />
+          <element id="file-copy" path="$PROJECT_DIR$/src/SequentialTimer.hbm.xml" />
         </element>
         <element id="directory" name="lib">
           <element id="dir-copy" path="$PROJECT_DIR$/lib" />
           <element id="library" level="project" name="google-api-services-calendar-v3-rev155-1.21.01" />
           <element id="library" level="project" name="commons-logging-1.1.11" />
+          <element id="library" level="project" name="servlet-api" />
         </element>
       </element>
+      <element id="file-copy" path="$PROJECT_DIR$/src/hibernate.cfg.xml" />
     </root>
   </artifact>
 </component>

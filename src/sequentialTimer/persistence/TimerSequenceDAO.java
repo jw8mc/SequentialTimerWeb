@@ -54,7 +54,7 @@ public class TimerSequenceDAO {
 
         try {
             tx = session.beginTransaction();
-            timerSequences = session.createQuery("from timer_sequences").list();
+            timerSequences = session.createQuery("from TimerSequence").list();
         } catch (HibernateException hex) {
             hex.printStackTrace();
         } finally {
@@ -76,7 +76,7 @@ public class TimerSequenceDAO {
 
         try {
             tx = session.beginTransaction();
-            String sql = "from timer_sequence where id = :tsId";
+            String sql = "from TimerSequence where id = :tsId";
             Query query = session.createQuery(sql);
             query.setInteger("tsId", tsId);
             ts = (TimerSequence)query.uniqueResult();
@@ -101,7 +101,7 @@ public class TimerSequenceDAO {
 
         try {
             tx = session.beginTransaction();
-            Query query = session.createQuery("from timer_sequences where ownerId = :ownerId");
+            Query query = session.createQuery("from TimerSequence where ownerId = :ownerId");
             query.setInteger("ownerId", userId);
             timerSequences = query.list();
         } catch (HibernateException hex) {
@@ -128,7 +128,7 @@ public class TimerSequenceDAO {
 
         try {
             tx = session.beginTransaction();
-            Query query = session.createQuery("from timer_sequences where ownerId = :ownerId and lower(repeat_settings) like :weekday");
+            Query query = session.createQuery("from TimerSequence where ownerId = :ownerId and lower(repeatSettings) like :weekday");
             query.setInteger("ownerId", userId);
             query.setString("weekday", weekday);
             timerSequences = query.list();

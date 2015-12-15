@@ -51,7 +51,7 @@ public class UserDAO {
 
         try {
             tx = session.beginTransaction();
-            users = session.createQuery("from users").list();
+            users = session.createQuery("from User").list();
         } catch (HibernateException hex) {
             hex.printStackTrace();
         } finally {
@@ -73,9 +73,34 @@ public class UserDAO {
 
         try {
             tx = session.beginTransaction();
-            String sql = "from users where id = :userId";
+            String sql = "from User where id = :userId";
             Query query = session.createQuery(sql);
             query.setInteger("userId", userId);
+            user = (User)query.uniqueResult();
+        } catch (HibernateException hex) {
+            hex.printStackTrace();
+        } finally {
+            session.close();
+        }
+
+        return user;
+    }
+
+    /**
+     * Retrieves a specific user record with the provided username
+     * @param username    the username of the desired record
+     * @return User     the retrieved record as a User object
+     */
+    public User getUserByUsername(String username) {
+        Session session = SessionFactoryProvider.getSessionFactory().openSession();
+        Transaction tx = null;
+        User user = null;
+
+        try {
+            tx = session.beginTransaction();
+            String sql = "from User where userName = :username";
+            Query query = session.createQuery(sql);
+            query.setParameter("username", username);
             user = (User)query.uniqueResult();
         } catch (HibernateException hex) {
             hex.printStackTrace();

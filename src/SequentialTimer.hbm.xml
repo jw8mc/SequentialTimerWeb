@@ -37,7 +37,6 @@
         </id>
         <property name="startTime" column="start_time" type="time"/>
         <property name="repeatSettings" column="repeat_settings" type="string"/>
-        <property name="numberOfTimers" column="number_of_timers" type="int"/>
         <property name="ownerId" column="owner_id" type="int"/>
     </class>
 

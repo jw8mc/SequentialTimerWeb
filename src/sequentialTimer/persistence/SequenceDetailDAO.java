@@ -51,7 +51,7 @@ public class SequenceDetailDAO {
 
         try {
             tx = session.beginTransaction();
-            sDetails = session.createQuery("from sequence_details").list();
+            sDetails = session.createQuery("from SequenceDetail").list();
         } catch (HibernateException hex) {
             hex.printStackTrace();
         } finally {
@@ -73,7 +73,7 @@ public class SequenceDetailDAO {
 
         try {
             tx = session.beginTransaction();
-            String sql = "from sequence_details where id = :sDetailId";
+            String sql = "from SequenceDetail where id = :sDetailId";
             Query query = session.createQuery(sql);
             query.setInteger("sDetailId", sDetailId);
             sDetail = (SequenceDetail)query.uniqueResult();
@@ -98,7 +98,7 @@ public class SequenceDetailDAO {
 
         try {
             tx = session.beginTransaction();
-            Query query = session.createQuery("from sequence_details where sequential_timer_id = :timerId");
+            Query query = session.createQuery("from SequenceDetail where sequentialTimerId = :timerId");
             query.setInteger("timerId", timerId);
             sDetails = query.list();
         } catch (HibernateException hex) {
@@ -123,7 +123,7 @@ public class SequenceDetailDAO {
 
         try {
             tx = session.beginTransaction();
-            Query query = session.createQuery("from sequence_details where timer_sequence_id = :sequenceId");
+            Query query = session.createQuery("from SequenceDetail where timerSequenceId = :sequenceId");
             query.setInteger("sequenceId", sequenceId);
             sDetails = query.list();
         } catch (HibernateException hex) {

@@ -47,7 +47,10 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-xs-4 col-xs-offset-2"><button class="btn btn-success btn-sm btn-block">New Timer</button></div>
+                        <div class="col-xs-4 col-xs-offset-2">
+                            <button class="btn btn-success btn-sm btn-block"
+                                    onclick="window.open('addSequentialTimer.jsp');">New Timer</button>
+                        </div>
                         <div class="col-xs-4"><button class="btn btn-danger btn-sm btn-block">Modify/Delete Timer</button></div>
                     </div>
                     <hr />
@@ -79,11 +82,6 @@
                                     clock = new FlipClock($('.clock'), {
                                         clockFace: 'TwentyFourHourClock'
                                     });
-//                                    clock.start();
-////                                    clock = $('.clock').FlipClock({
-////                                        clockFace: 'TwentyFourHourClock'
-////                                    });
-////                                    clock.start();
                                 });
 
                             </script>

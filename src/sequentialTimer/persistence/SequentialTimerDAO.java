@@ -51,7 +51,7 @@ public class SequentialTimerDAO {
 
         try {
             tx = session.beginTransaction();
-            timers = session.createQuery("from sequential_timers").list();
+            timers = session.createQuery("from SequentialTimer").list();
         } catch (HibernateException hex) {
             hex.printStackTrace();
         } finally {
@@ -73,7 +73,7 @@ public class SequentialTimerDAO {
 
         try {
             tx = session.beginTransaction();
-            String sql = "from sequential_timers where id = :timerId";
+            String sql = "from SequentialTimer where id = :timerId";
             Query query = session.createQuery(sql);
             query.setInteger("timerId", timerId);
             timer = (SequentialTimer)query.uniqueResult();
@@ -98,7 +98,7 @@ public class SequentialTimerDAO {
 
         try {
             tx = session.beginTransaction();
-            Query query = session.createQuery("from sequential_timers where ownerId = :ownerId");
+            Query query = session.createQuery("from SequentialTimer where ownerId = :ownerId");
             query.setInteger("ownerId", userId);
             timers = query.list();
         } catch (HibernateException hex) {

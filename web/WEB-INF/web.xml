@@ -26,4 +26,12 @@
         </form-login-config>
     </login-config>
 -->
+    <servlet>
+        <servlet-name>AddNewTimer</servlet-name>
+        <servlet-class>sequentialTimer.processing.AddNewTimerServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AddNewTimer</servlet-name>
+        <url-pattern>/addnewtimer</url-pattern>
+    </servlet-mapping>
 </web-app>
