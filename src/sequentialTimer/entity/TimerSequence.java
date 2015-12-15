@@ -11,14 +11,14 @@ import java.util.Date;
 public class TimerSequence {
 
     private int id;
-    private Date startTime;
+    private String startTime;
     private String repeatSettings;
     private int ownerId;
 
     public int getId() { return id; }
     public void setId(int id) { this.id = id; }
-    public Date getStartTime() { return startTime; }
-    public void setStartTime(Date startTime) { this.startTime = startTime; }
+    public String getStartTime() { return startTime; }
+    public void setStartTime(String startTime) { this.startTime = startTime; }
     public String getRepeatSettings() { return repeatSettings; }
     public void setRepeatSettings(String repeatSettings) { this.repeatSettings = repeatSettings; }
     public int getOwnerId() { return ownerId; }
@@ -37,7 +37,7 @@ public class TimerSequence {
      * @param repeatSettings
      * @param ownerId
      */
-    public TimerSequence(int id, Date startTime, String repeatSettings, int ownerId) {
+    public TimerSequence(int id, String startTime, String repeatSettings, int ownerId) {
         this();
         this.id = id;
         this.startTime = startTime;

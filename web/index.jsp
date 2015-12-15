@@ -1,6 +1,14 @@
 <%@ page import="java.util.Date" %>
 <%@ page import="java.text.SimpleDateFormat" %>
 <%@ page import="java.text.DateFormat" %>
+<%@ page import="sequentialTimer.persistence.TimerSequenceDAO" %>
+<%@ page import="sequentialTimer.processing.AllTimerProcessing" %>
+<%@ page import="sequentialTimer.processing.TimerSequenceForJSON" %>
+<%@ page import="java.util.List" %>
+<%@ page import="com.google.gson.Gson" %>
+<%@ page import="com.google.gson.GsonBuilder" %>
+<%@ page import="sequentialTimer.entity.SequentialTimer" %>
+<%@ page import="java.util.ArrayList" %>
 <%--
   Created by IntelliJ IDEA.
   User: Student
@@ -12,24 +20,26 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
     <head>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
         <c:import url="/imports/head.jsp" />
+        <!--<script src="imports/javascript/index.js" type="text/javascript"></script>-->
         <title>Sequential Timer Hub</title>
     </head>
     <body>
         <!-- ALARM ALERT MODAL -->
-        <div class="modal fade" role="dialog">
+        <div id="alarm-modal" class="modal fade" role="dialog">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h4 class="modal-title">${alarmName}</h4>
+                        <h4 class="modal-title alarm-name"></h4>
                     </div>
                     <div class="modal-body">
-                        <h1>${alarmName}</h1>
+                        <h1 class="alarm-name"></h1>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-lg" data-dismiss="modal">Got It!</button>
-                        <button type="button" class="btn btn-lg" data-dismiss="modal">Snooze</button>
-                        <button type="button" class="btn btn-lg" data-dismiss="modal">Cancel All Alarms</button>
+                        <button id="alarm-gotit" name="alarm-gotit" type="button" class="btn btn-lg" data-dismiss="modal" onclick="nextAlarm();">Got It!</button>
+                        <button id="alarm-snooze" name="alarm-snooze" type="button" class="btn btn-lg" data-dismiss="modal" onclick="snooze();">Snooze</button>
+                        <button id="alarm-clear" name="alarm-clear" type="button" class="btn btn-lg" data-dismiss="modal" onclick="clear();">Cancel All Alarms</button>
                     </div>
                 </div>
             </div>
@@ -58,7 +68,7 @@
                         <div class="col-xs-4"><button class="btn btn-danger btn-sm btn-block">Modify/Delete Timer</button></div>
                     </div>
                     <hr />
-                    <c:import url="/imports/timerColumn.jsp" />
+                    <c:import url="imports/timerColumn.jsp" />
                 </div>
 
                 <!-- CLOCK and TASK COLUMN -->

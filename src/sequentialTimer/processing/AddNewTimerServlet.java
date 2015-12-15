@@ -18,6 +18,7 @@ import java.io.IOException;
 public class AddNewTimerServlet extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
         String username = request.getParameter("username");
         String name = request.getParameter("name");
         int duration = Integer.parseInt(request.getParameter("duration"));

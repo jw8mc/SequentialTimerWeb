@@ -10,15 +10,20 @@ import java.util.List;
  */
 public class TimerSequenceForJSON {
 
-    private Date start;
+    private String start;
     private List<SequentialTimer> timers;
 
-    public Date getStart() { return start; }
-    public void setStart(Date start) { this.start = start; }
+    public String getStart() { return start; }
+    public void setStart(String start) { this.start = start; }
     public List<SequentialTimer> getTimers() { return timers; }
     public void setTimers(List<SequentialTimer> timers) { this.timers = timers; }
 
-    public TimerSequenceForJSON(Date start, List<SequentialTimer> timers) {
+    /**
+     * Constructor that takes two parameters, a time and an array of sequential timers.
+     * @param start     the time the alarm will be set for
+     * @param timers    an array of SequentialTimer objects, representing timers in the sequence
+     */
+    public TimerSequenceForJSON(String start, List<SequentialTimer> timers) {
         this.start = start;
         this.timers = timers;
     }

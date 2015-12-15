@@ -22,8 +22,8 @@
         <id name="id" type="int" column="id">
             <generator class="native"/>
         </id>
-        <property name="name" column="name" type="string"/>
-        <property name="length" column="length" type="int"/>
+        <property name="timerName" column="name" type="string"/>
+        <property name="duration" column="length" type="int"/>
         <property name="snoozeLength" column="snooze_length" type="int"/>
         <property name="ownerId" column="owner_id" type="int"/>
     </class>
@@ -35,7 +35,7 @@
         <id name="id" type="int" column="id">
             <generator class="native"/>
         </id>
-        <property name="startTime" column="start_time" type="time"/>
+        <property name="startTime" column="start_time" type="string"/>
         <property name="repeatSettings" column="repeat_settings" type="string"/>
         <property name="ownerId" column="owner_id" type="int"/>
     </class>

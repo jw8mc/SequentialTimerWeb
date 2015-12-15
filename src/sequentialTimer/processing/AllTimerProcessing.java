@@ -31,6 +31,7 @@ public class AllTimerProcessing {
     public AllTimerProcessing(int userId) {
 
         this.userId = userId;
+        allSequencesJSONable = new ArrayList<TimerSequenceForJSON>();
     }
 
     /**
@@ -57,7 +58,7 @@ public class AllTimerProcessing {
             List<SequentialTimer> timers = processor.getTimers();
 
             //JSONable sequence object
-            Date start = ts.getStartTime();
+            String start = ts.getStartTime();
             TimerSequenceForJSON tsJSON = new TimerSequenceForJSON(start, timers);
             allSequencesJSONable.add(tsJSON);
         }

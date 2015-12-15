@@ -23,13 +23,13 @@
   <div class="form-group">
     <label class="control-label col-xs-2">Repeat:</label>
     <div class="col-xs-6">
-      <label><input type="checkbox" value="sun" />Sunday</label>
-      <label><input type="checkbox" value="mon" />Monday</label>
-      <label><input type="checkbox" value="tue" />Tuesday</label>
-      <label><input type="checkbox" value="wed" />Wednesday</label>
-      <label><input type="checkbox" value="thu" />Thursday</label>
-      <label><input type="checkbox" value="fri" />Friday</label>
-      <label><input type="checkbox" value="sat" />Saturday</label>
+      <label><input type="checkbox" name="repeat" value="Sunday" />Sunday</label>
+      <label><input type="checkbox" name="repeat" value="Monday" />Monday</label>
+      <label><input type="checkbox" name="repeat" value="Tuesday" />Tuesday</label>
+      <label><input type="checkbox" name="repeat" value="Wednesday" />Wednesday</label>
+      <label><input type="checkbox" name="repeat" value="Thursday" />Thursday</label>
+      <label><input type="checkbox" name="repeat" value="Friday" />Friday</label>
+      <label><input type="checkbox" name="repeat" value="Saturday" />Saturday</label>
     </div>
   </div>
   <div class="form-group">

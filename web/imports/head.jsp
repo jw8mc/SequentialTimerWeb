@@ -8,7 +8,7 @@
 
 <!-- REQUIRED FOR FLIPCLOCK -->
 <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>-->
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+
 <script src="/imports/javascript/flipclock.js"></script>
 <link rel="stylesheet" href="/imports/flipclock.css" />
 
