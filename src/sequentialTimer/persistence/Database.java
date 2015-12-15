@@ -33,7 +33,7 @@ public class Database {
         }
 
         String url = "jdbc:mysql://localhost:3306/SequentialTimerApp";
-        connection = DriverManager.getConnection(url, "root", "root");
+        connection = DriverManager.getConnection(url, "root", "student");
     }
 
     public void disconnect() {
