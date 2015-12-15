@@ -1,5 +1,6 @@
 import junit.framework.Assert;
 import org.hibernate.HibernateException;
+import org.junit.Ignore;
 import org.junit.Test;
 import sequentialTimer.entity.User;
 import sequentialTimer.persistence.UserDAO;
@@ -13,7 +14,7 @@ import java.util.List;
 public class TestUserDAO {
 
     private Integer addedUserId;
-
+@Ignore
     @Test
     public void testAddUser() {
         User testUser = new User(0, "testUserName", "testPassword");
@@ -21,21 +22,21 @@ public class TestUserDAO {
         addedUserId = uDao.createUser(testUser);
         Assert.assertNotNull(addedUserId);
     }
-
+    @Ignore
     @Test
     public void testGetAllUsers() {
         UserDAO uDao = new UserDAO();
         List<User> listReturn = uDao.getAllUsers();
         Assert.assertTrue(listReturn.size() > 0);
     }
-
+    @Ignore
     @Test
     public void testGetUserById() {
         UserDAO uDao = new UserDAO();
         User returnedUser = uDao.getUserById(addedUserId);
         Assert.assertNotNull(returnedUser);
     }
-
+    @Ignore
     @Test
     public void testUpdateUser() {
         UserDAO uDao = new UserDAO();
@@ -44,7 +45,7 @@ public class TestUserDAO {
         User retrievedUser = uDao.getUserById(addedUserId);
         Assert.assertEquals("newUserName", retrievedUser.getUserName());
     }
-
+    @Ignore
     @Test(expected = HibernateException.class)
     public void testUpdateUserToFail() {
         UserDAO uDao = new UserDAO();
@@ -52,7 +53,7 @@ public class TestUserDAO {
         uDao.updateUser(userToUpdate);
         Assert.fail("Expected a Hibernate exception for trying to assign null to a non-nullable field.");
     }
-
+    @Ignore
     @Test
     public void testDeleteUser() {
         UserDAO uDao = new UserDAO();

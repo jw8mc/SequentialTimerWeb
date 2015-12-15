@@ -13,17 +13,14 @@ public class TimerSequence {
     private int id;
     private Date startTime;
     private String repeatSettings;
-    private int numberOfTimers;
     private int ownerId;
 
     public int getId() { return id; }
     public void setId(int id) { this.id = id; }
     public Date getStartTime() { return startTime; }
     public void setStartTime(Date startTime) { this.startTime = startTime; }
-    public int getNumberOfTimers() { return numberOfTimers; }
     public String getRepeatSettings() { return repeatSettings; }
     public void setRepeatSettings(String repeatSettings) { this.repeatSettings = repeatSettings; }
-    public void setNumberOfTimers(int numberOfTimers) { this.numberOfTimers = numberOfTimers; }
     public int getOwnerId() { return ownerId; }
     public void setOwnerId(int ownerId) { this.ownerId = ownerId; }
 
@@ -56,7 +53,6 @@ public class TimerSequence {
     public String toString() {
         return System.lineSeparator() + "Sequence ID: " + id
                 + System.lineSeparator() + "Anchor Timer ID: " + startTime
-                + System.lineSeparator() + "Owner: " + ownerId
-                + System.lineSeparator() + "Number of sequential timers:" + numberOfTimers;
+                + System.lineSeparator() + "Owner: " + ownerId;
     }
 }

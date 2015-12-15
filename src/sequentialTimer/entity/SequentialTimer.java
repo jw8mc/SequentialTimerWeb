@@ -6,10 +6,26 @@ package sequentialTimer.entity;
  * @author Jen Williams
  * @version 1.0
  */
-public class SequentialTimer extends TimerBase {
+public class SequentialTimer {
 
+    private int id;
+    private String name;
     private int length;
+    private int snoozeLength;
+    private int ownerId;
+    //the acknowledgedState is used only for timers currently in progress, it is not part of database actions
+    private boolean acknowledgedState;
 
+    public int getId() { return id; }
+    public void setId(int id) { this.id = id; }
+    public String getName() { return name; }
+    public void setName(String name) { this.name = name; }
+    public int getSnoozeLength() { return snoozeLength; }
+    public void setSnoozeLength(int snoozeLength) { this.snoozeLength = snoozeLength; }
+    public int getOwnerId() { return ownerId; }
+    public void setOwnerId(int ownerId) { this.ownerId = ownerId; }
+    public boolean getAcknowledgedState() { return acknowledgedState; }
+    public void setAcknowledgedState(boolean state) { this.acknowledgedState = state; }
     public int getLength() { return length; }
     public void setLength(int length) { this.length = length; }
 

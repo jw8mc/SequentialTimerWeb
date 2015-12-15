@@ -17,22 +17,22 @@ import java.util.List;
  */
 public class TimerListProcessing {
 
-    private List<TimerBase> timers;
+    private List<SequentialTimer> timers;
 
-    public List<TimerBase> getTimers() { return timers; }
-    public void setTimers(List<TimerBase> timers) { this.timers = timers; }
+    public List<SequentialTimer> getTimers() { return timers; }
+    public void setTimers(List<SequentialTimer> timers) { this.timers = timers; }
 
     /**
      * Primary access method for the class - takes a TimerSequence object, gets all related
      * timer objects, and puts them into an array.
      *
      * @param   sequence        the TimerSequence object
-     * @return  List<TimerBase> list of all timers in the sequence
+     * @return  List<SequentialTimer> list of all timers in the sequence
      */
-    public List<TimerBase> populateTimerArray(TimerSequence sequence) {
+    public List<SequentialTimer> populateTimerArray(TimerSequence sequence) {
 
         //initializing the timer array
-        timers = new ArrayList<TimerBase>();
+        timers = new ArrayList<SequentialTimer>();
 
         int sequenceId = sequence.getId();
         List<SequentialTimer> sequentialTimers = new ArrayList<SequentialTimer>();
