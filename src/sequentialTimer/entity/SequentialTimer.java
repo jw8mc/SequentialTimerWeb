@@ -13,8 +13,6 @@ public class SequentialTimer {
     private int length;
     private int snoozeLength;
     private int ownerId;
-    //the acknowledgedState is used only for timers currently in progress, it is not part of database actions
-    private boolean acknowledgedState;
 
     public int getId() { return id; }
     public void setId(int id) { this.id = id; }
@@ -24,17 +22,13 @@ public class SequentialTimer {
     public void setSnoozeLength(int snoozeLength) { this.snoozeLength = snoozeLength; }
     public int getOwnerId() { return ownerId; }
     public void setOwnerId(int ownerId) { this.ownerId = ownerId; }
-    public boolean getAcknowledgedState() { return acknowledgedState; }
-    public void setAcknowledgedState(boolean state) { this.acknowledgedState = state; }
     public int getLength() { return length; }
     public void setLength(int length) { this.length = length; }
 
     /**
      * Empty constructor that takes no parameters.
      */
-    public SequentialTimer() {
-        setAcknowledgedState(false);
-    }
+    public SequentialTimer() {};
 
     /**
      * Constructor that takes five paramters to populate the data object.

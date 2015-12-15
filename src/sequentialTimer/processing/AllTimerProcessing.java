@@ -7,23 +7,29 @@ import sequentialTimer.persistence.TimerSequenceDAO;
 import java.util.*;
 
 /**
- * Created by Student on 12/14/2015.
+ * This class gets all timer sequences for the current user that have a repeat set for the current day. It processes
+ * these sequence objects to retrieve and order their respective sequences of sequential timers, and then converts the
+ * sequences into a JSON-friendly format for later use in the jsp.
  */
 public class AllTimerProcessing {
-    //get user id
-    //get all sequence id/objects for that user
-    //call timerlistprocessing on each sequence object
-    //create array of all timerlistprocessing returns
-    //get array into JSON object
-    //do I want to just covert it?
-    //or only include the data I need on the javascipt side?
-    //is there any discrepancy there? I guess the preceding timer part
 
     private int userId;
     private List<TimerSequence> allSequences;
     private List<TimerSequenceForJSON> allSequencesJSONable;
 
+    public int getUserId() { return userId; }
+    public void setUserId(int userId) { this.userId = userId; }
+    public List<TimerSequence> getAllSequences() { return allSequences; }
+    public void setAllSequences(List<TimerSequence> allSequences) { this.allSequences = allSequences; }
+    public List<TimerSequenceForJSON> getAllSequencesJSONable() { return allSequencesJSONable; }
+    public void setAllSequencesJSONable(List<TimerSequenceForJSON> allSequencesJSONable) { this.allSequencesJSONable = allSequencesJSONable; }
+
+    /**
+     * Constructor that takes a userId parameter.
+     * @param userId    id of the current user
+     */
     public AllTimerProcessing(int userId) {
+
         this.userId = userId;
     }
 
@@ -52,26 +58,9 @@ public class AllTimerProcessing {
 
             //JSONable sequence object
             Date start = ts.getStartTime();
-            List<SequentialTimerForJSON> timersJSON = convertSequenceTimersToJSONable(timers);
-            TimerSequenceForJSON tsJSON = new TimerSequenceForJSON(start, timersJSON);
+            TimerSequenceForJSON tsJSON = new TimerSequenceForJSON(start, timers);
             allSequencesJSONable.add(tsJSON);
         }
-    }
-
-    /**
-     * Converts the sequence timers for a given sequence to an array of JSONable objects.
-     * @param timers    the list of sequential timers for the sequence
-     * @return  the list of JSONable timer objects
-     */
-    private List<SequentialTimerForJSON> convertSequenceTimersToJSONable(List<SequentialTimer> timers) {
-        //list to hold JSONable timer objects
-        List<SequentialTimerForJSON> timersJSON = new ArrayList<>();
-        for (SequentialTimer st : timers) {
-            SequentialTimerForJSON stJSON = new SequentialTimerForJSON(st.getName(), st.getLength(), st.getSnoozeLength());
-            timersJSON.add(stJSON);
-        }
-
-        return timersJSON;
     }
 
     /**

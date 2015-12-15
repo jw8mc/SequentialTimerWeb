@@ -1,3 +1,5 @@
+<%@ page import="sequentialTimer.persistence.TimerSequenceDAO" %>
+<%@ page import="sequentialTimer.processing.AllTimerProcessing" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
@@ -8,7 +10,10 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
-    int TEMPORARY_USER_ID_FOR_TESTING_ONLY = 1010;
+    int TEMPORARY_USER_ID_FOR_TESTING_ONLY = 1;
+
+    AllTimerProcessing processor = new AllTimerProcessing(TEMPORARY_USER_ID_FOR_TESTING_ONLY);
+
 %>
 <div class="row">
     <div class="col-xs-12"></div>

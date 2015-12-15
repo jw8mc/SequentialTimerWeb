@@ -34,4 +34,13 @@
         <servlet-name>AddNewTimer</servlet-name>
         <url-pattern>/addnewtimer</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>AddNewSequence</servlet-name>
+        <servlet-class>sequentialTimer.processing.AddNewSequenceServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AddNewSequence</servlet-name>
+        <url-pattern>/addnewsequence</url-pattern>
+    </servlet-mapping>
 </web-app>

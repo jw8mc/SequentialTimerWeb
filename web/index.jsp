@@ -47,9 +47,13 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-xs-4 col-xs-offset-2">
+                        <div class="col-xs-4">
                             <button class="btn btn-success btn-sm btn-block"
                                     onclick="window.open('addSequentialTimer.jsp');">New Timer</button>
+                        </div>
+                        <div class="col-xs-4">
+                            <button class="btn btn-success btn-sm btn-block"
+                                    onclick="window.open('addTimerSequence.jsp');">New Sequence</button>
                         </div>
                         <div class="col-xs-4"><button class="btn btn-danger btn-sm btn-block">Modify/Delete Timer</button></div>
                     </div>

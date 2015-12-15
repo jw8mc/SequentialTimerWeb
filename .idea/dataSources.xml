@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="DataSourceManagerImpl" format="xml" hash="1623894744">
+  <component name="DataSourceManagerImpl" format="xml" hash="2861754307">
     <data-source source="LOCAL" name="MySQL - SequentialTimerApp@localhost" uuid="77094638-07a8-4656-ad20-441fefe07a24">
       <driver-ref>mysql</driver-ref>
       <synchronize>true</synchronize>
