@@ -1,5 +1,6 @@
 package sequentialTimer.processing;
 
+import org.apache.log4j.Logger;
 import sequentialTimer.entity.SequentialTimer;
 import sequentialTimer.entity.TimerSequence;
 import sequentialTimer.persistence.TimerSequenceDAO;
@@ -12,6 +13,8 @@ import java.util.*;
  * sequences into a JSON-friendly format for later use in the jsp.
  */
 public class AllTimerProcessing {
+
+    final static Logger logger = Logger.getLogger(AllTimerProcessing.class);
 
     private int userId;
     private List<TimerSequence> allSequences;
@@ -43,6 +46,7 @@ public class AllTimerProcessing {
 
         //after this method, the instance variable allSequencesJSONable will be populated
         convertToJSONable();
+        logger.info("JSONable sequences: " + allSequencesJSONable);
     }
 
     /**

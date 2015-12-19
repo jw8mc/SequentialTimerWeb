@@ -22,7 +22,7 @@
     <head>
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
         <c:import url="/imports/head.jsp" />
-        <!--<script src="imports/javascript/index.js" type="text/javascript"></script>-->
+        <script src="imports/javascript/index.js" type="text/javascript"></script>
         <title>Sequential Timer Hub</title>
     </head>
     <body>

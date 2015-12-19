@@ -14,6 +14,7 @@ import com.google.api.client.util.DateTime;
 
 import com.google.api.services.calendar.CalendarScopes;
 import com.google.api.services.calendar.model.*;
+import org.apache.log4j.Logger;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -23,9 +24,16 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- * Created by Student on 12/8/2015.
+ * Class written to interact with Google's OAuth2 and Calendar APIs. Code is heavily borrowed from Google's sample code
+ * and from Paula Waite's example.
+ *
+ * This service relies on having a client_secret.json file specific to the application, which is activated through
+ * the Google developer portal.
  */
 public class GoogleCalendarConsumer {
+
+    final static Logger logger = Logger.getLogger(GoogleCalendarConsumer.class);
+
     private static final String APPLICATION_NAME = "Sequential Timer App";
     private static final java.io.File DATA_STORE_DIR = new java.io.File(
             System.getProperty("user.home"), ".credentials/sequential-timer-app");
@@ -112,7 +120,7 @@ public class GoogleCalendarConsumer {
                 .setSingleEvents(true)
                 .execute();
         items = events.getItems();
-        System.out.println(items);
+        logger.info("Events: " + events);
         return items;
     }
 }

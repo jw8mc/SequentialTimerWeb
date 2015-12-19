@@ -1,5 +1,6 @@
 package sequentialTimer.processing;
 
+import org.apache.log4j.Logger;
 import sequentialTimer.entity.*;
 import sequentialTimer.persistence.Database;
 import sequentialTimer.persistence.SequenceDetailDAO;
@@ -16,6 +17,8 @@ import java.util.List;
  * @version 1.0     11/30/2015
  */
 public class TimerListProcessing {
+
+    final static Logger logger = Logger.getLogger(TimerListProcessing.class);
 
     private List<SequentialTimer> timers;
 
@@ -43,11 +46,12 @@ public class TimerListProcessing {
             timers.add(timer);
         }
 
+        logger.info("Timers: " + timers);
         return timers;
     }
 
     /**
-     *
+     * Gets all timers in a sequence and stores them in order.
      * @param sequenceId
      * @return
      */
@@ -82,11 +86,12 @@ public class TimerListProcessing {
             }
         }
 
+        logger.info("Timers in the sequence: " + sequentialTimers);
         return sequentialTimers;
     }
 
     /**
-     *
+     * Gets all sequence details for a sequence.
      * @param sequenceId
      * @return
      */
@@ -104,11 +109,12 @@ public class TimerListProcessing {
             exc.printStackTrace();
         }
 
+        logger.info("Sequence details: " + details);
         return details;
     }
 
     /**
-     *
+     * Gets a sequential timer record by id, using the SequentialTimerDAO.
      * @param timerId
      * @return
      */
@@ -118,13 +124,17 @@ public class TimerListProcessing {
 
         try {
             Database.getInstance().connect();
+            logger.debug("Database connection opened.");
             timer = stDao.getSequentialTimerById(timerId);
         } catch (SQLException sqle) {
+            logger.error("SQL exception while attempting to retrieve a sequential timer by ID.");
             sqle.printStackTrace();
         } catch (Exception exc) {
+            logger.error("Exception while attempting to retrieve a sequential timer by ID.");
             exc.printStackTrace();
         }
 
+        logger.info("Timer: " + timer);
         return timer;
     }
 }

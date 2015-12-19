@@ -1,5 +1,6 @@
 package sequentialTimer.persistence;
 
+import org.apache.log4j.Logger;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -14,6 +15,8 @@ import java.util.List;
  */
 public class SequentialTimerDAO {
 
+    final static Logger logger = Logger.getLogger(SequentialTimerDAO.class);
+
     /**
      * Creates a new sequential_timers record based on the provided SequentialTimer entity
      * @param timer     a populated SequentialTimer object
@@ -21,6 +24,7 @@ public class SequentialTimerDAO {
      */
     public Integer createSequentialTimer(SequentialTimer timer) {
         Session session = SessionFactoryProvider.getSessionFactory().openSession();
+        logger.debug("Session opened to create sequence timer.");
         Transaction tx = null;
         Integer timerId = null;
 
@@ -28,13 +32,17 @@ public class SequentialTimerDAO {
             tx = session.beginTransaction();
             timerId = (Integer)session.save(timer);
             tx.commit();
+            logger.debug("New sequence timer committed.");
         } catch (HibernateException hex) {
+            logger.error("Exception while attempting to insert new sequence timer.");
             if (tx != null) {
                 tx.rollback();
+                logger.error("Rolling back sequence timer creation transaction.");
             }
             hex.printStackTrace();
         } finally {
             session.close();
+            logger.debug("Closing session.");
         }
 
         return timerId;
@@ -56,6 +64,7 @@ public class SequentialTimerDAO {
             hex.printStackTrace();
         } finally {
             session.close();
+            logger.debug("Closing session.");
         }
 
         return timers;
@@ -81,6 +90,7 @@ public class SequentialTimerDAO {
             hex.printStackTrace();
         } finally {
             session.close();
+            logger.debug("Closing session.");
         }
 
         return timer;
@@ -105,6 +115,7 @@ public class SequentialTimerDAO {
             hex.printStackTrace();
         } finally {
             session.close();
+            logger.debug("Closing session.");
         }
 
         return timers;
@@ -126,6 +137,7 @@ public class SequentialTimerDAO {
             hex.printStackTrace();
         } finally {
             session.close();
+            logger.debug("Closing session.");
         }
     }
 
@@ -149,6 +161,7 @@ public class SequentialTimerDAO {
             hex.printStackTrace();
         } finally {
             session.close();
+            logger.debug("Closing session.");
         }
     }
 }

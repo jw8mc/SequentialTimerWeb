@@ -1,5 +1,6 @@
 package sequentialTimer.processing;
 
+import org.apache.log4j.Logger;
 import sequentialTimer.entity.TimerSequence;
 import sequentialTimer.entity.User;
 import sequentialTimer.persistence.TimerSequenceDAO;
@@ -19,6 +20,8 @@ import java.util.Date;
 //@WebServlet(name = "AddNewSequenceServlet")
 public class AddNewSequenceServlet extends HttpServlet {
 
+    final static Logger logger = Logger.getLogger(AddNewSequenceServlet.class);
+
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         String username = request.getParameter("username");
@@ -32,12 +35,12 @@ public class AddNewSequenceServlet extends HttpServlet {
         for (int i = 0; i < checkValues.length; i++) {
             repeat += (" " + checkValues[i]);
         }
-        //TODO: LOG CONCAT STRING HERE
+        logger.debug("Repeat settings: " + repeat);
 
         String start = request.getParameter("start");
 
         TimerSequence ts = new TimerSequence(0, start, repeat, userId);
-        //TODO: LOG TOSTRING HERE
+        logger.debug("Timer sequence: " + ts.toString());
 
         TimerSequenceDAO tsDao = new TimerSequenceDAO();
         tsDao.createTimerSequence(ts);

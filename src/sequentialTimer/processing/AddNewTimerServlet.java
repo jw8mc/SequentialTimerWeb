@@ -1,5 +1,6 @@
 package sequentialTimer.processing;
 
+import org.apache.log4j.Logger;
 import sequentialTimer.entity.SequentialTimer;
 import sequentialTimer.entity.User;
 import sequentialTimer.persistence.SequentialTimerDAO;
@@ -17,6 +18,8 @@ import java.io.IOException;
 //@javax.servlet.annotation.WebServlet(name = "addNewTimer", urlPatterns = {"/addnewtimer"})
 public class AddNewTimerServlet extends HttpServlet {
 
+    final static Logger logger = Logger.getLogger(AddNewTimerServlet.class);
+
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         String username = request.getParameter("username");
@@ -30,6 +33,7 @@ public class AddNewTimerServlet extends HttpServlet {
         int userId = user.getId();
 
         SequentialTimer st = new SequentialTimer(0, name, duration, snooze, userId);
+        logger.debug("New sequential timer: " + st.toString());
 
         SequentialTimerDAO stDao = new SequentialTimerDAO();
         stDao.createSequentialTimer(st);

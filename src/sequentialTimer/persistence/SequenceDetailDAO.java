@@ -1,5 +1,6 @@
 package sequentialTimer.persistence;
 
+import org.apache.log4j.Logger;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -14,6 +15,8 @@ import java.util.List;
  */
 public class SequenceDetailDAO {
 
+    final static Logger logger = Logger.getLogger(SequenceDetailDAO.class);
+
     /**
      * Creates a new sequence_details record based on the provided SequenceDetail entity
      * @param sDetail      a populated SequenceDetail object
@@ -21,6 +24,7 @@ public class SequenceDetailDAO {
      */
     public Integer createSequenceDetail(SequenceDetail sDetail) {
         Session session = SessionFactoryProvider.getSessionFactory().openSession();
+        logger.debug("Session opened to create sequence detail.");
         Transaction tx = null;
         Integer sDetailId = null;
 
@@ -28,15 +32,20 @@ public class SequenceDetailDAO {
             tx = session.beginTransaction();
             sDetailId = (Integer)session.save(sDetail);
             tx.commit();
+            logger.debug("New sequence committed.");
         } catch (HibernateException hex) {
+            logger.error("Exception while attempting to insert new sequence detail.");
             if (tx != null) {
                 tx.rollback();
+                logger.error("Rolling back sequence detail creation transaction.");
             }
             hex.printStackTrace();
         } finally {
             session.close();
+            logger.debug("Closing session.");
         }
 
+        logger.info("New sequence detail ID: " + sDetailId);
         return sDetailId;
     }
 
@@ -46,18 +55,23 @@ public class SequenceDetailDAO {
      */
     public List<SequenceDetail> getAllSequenceDetails() {
         Session session = SessionFactoryProvider.getSessionFactory().openSession();
+        logger.debug("Session opened to get all sequence details.");
         Transaction tx = null;
         List<SequenceDetail> sDetails = new ArrayList<SequenceDetail>();
 
         try {
             tx = session.beginTransaction();
             sDetails = session.createQuery("from SequenceDetail").list();
+            logger.debug("All sequence details retrieved.");
         } catch (HibernateException hex) {
+            logger.error("Exception while attempting to retrieve all sequence detail records.");
             hex.printStackTrace();
         } finally {
             session.close();
+            logger.debug("Closing session.");
         }
 
+        logger.info("Sequence details retrieved: " + sDetails);
         return sDetails;
     }
 
@@ -68,6 +82,7 @@ public class SequenceDetailDAO {
      */
     public SequenceDetail getSequenceDetailById(int sDetailId) {
         Session session = SessionFactoryProvider.getSessionFactory().openSession();
+        logger.debug("Session opened to retrieve sequence detail.");
         Transaction tx = null;
         SequenceDetail sDetail = null;
 
@@ -77,12 +92,16 @@ public class SequenceDetailDAO {
             Query query = session.createQuery(sql);
             query.setInteger("sDetailId", sDetailId);
             sDetail = (SequenceDetail)query.uniqueResult();
+            logger.debug("Sequence detail record retrieved.");
         } catch (HibernateException hex) {
+            logger.error("Exception while attempting to retrieve single sequence detail.");
             hex.printStackTrace();
         } finally {
             session.close();
+            logger.debug("Closing session.");
         }
 
+        logger.info("Sequence detail retrieved: " + sDetail);
         return sDetail;
     }
 
@@ -93,6 +112,7 @@ public class SequenceDetailDAO {
      */
     public List<SequenceDetail> getAllSequenceDetailsForSequentialTimer(int timerId) {
         Session session = SessionFactoryProvider.getSessionFactory().openSession();
+        logger.debug("Session opened to get all sequence details for a single timer.");
         Transaction tx = null;
         List<SequenceDetail> sDetails = new ArrayList<SequenceDetail>();
 
@@ -101,12 +121,16 @@ public class SequenceDetailDAO {
             Query query = session.createQuery("from SequenceDetail where sequentialTimerId = :timerId");
             query.setInteger("timerId", timerId);
             sDetails = query.list();
+            logger.debug("Sequence details records retrieved.");
         } catch (HibernateException hex) {
+            logger.error("Exception while attempting to retrieve timer sequence details for given timer.");
             hex.printStackTrace();
         } finally {
             session.close();
+            logger.debug("Closing session.");
         }
 
+        logger.info("Sequence details retrieved: " + sDetails);
         return sDetails;
     }
 
@@ -118,6 +142,7 @@ public class SequenceDetailDAO {
      */
     public List<SequenceDetail> getAllSequenceDetailsForTimerSequence(int sequenceId) {
         Session session = SessionFactoryProvider.getSessionFactory().openSession();
+        logger.debug("Session opened to get all sequence details for a given sequence.");
         Transaction tx = null;
         List<SequenceDetail> sDetails = new ArrayList<SequenceDetail>();
 
@@ -126,12 +151,16 @@ public class SequenceDetailDAO {
             Query query = session.createQuery("from SequenceDetail where timerSequenceId = :sequenceId");
             query.setInteger("sequenceId", sequenceId);
             sDetails = query.list();
+            logger.debug("Sequence details retrieved.");
         } catch (HibernateException hex) {
+            logger.error("Exception while attempting to retrieve sequence details for a given sequence.");
             hex.printStackTrace();
         } finally {
             session.close();
+            logger.debug("Closing session.");
         }
 
+        logger.info("Sequence details retrieved: " + sDetails);
         return sDetails;
     }
 
@@ -141,16 +170,24 @@ public class SequenceDetailDAO {
      */
     public void updateSequenceDetail(SequenceDetail sDetail) {
         Session session = SessionFactoryProvider.getSessionFactory().openSession();
+        logger.debug("Session opened to update a sequence detail.");
         Transaction tx = null;
 
         try {
             tx = session.beginTransaction();
             session.update(sDetail);
             tx.commit();
+            logger.debug("Sequence detail updated.");
         } catch (HibernateException hex) {
+            logger.error("Exception while attempting to update sequence detail.");
+            if (tx != null) {
+                tx.rollback();
+                logger.error("Rolling back sequence detail update transaction.");
+            }
             hex.printStackTrace();
         } finally {
             session.close();
+            logger.debug("Closing session.");
         }
     }
 
@@ -160,6 +197,7 @@ public class SequenceDetailDAO {
      */
     public void deleteSequenceDetail(int sDetailId) {
         Session session = SessionFactoryProvider.getSessionFactory().openSession();
+        logger.debug("Session opened to delete a sequence detail.");
         Transaction tx = null;
 
         try {
@@ -167,13 +205,17 @@ public class SequenceDetailDAO {
             SequenceDetail sDetail = (SequenceDetail)session.load(SequenceDetail.class, new Integer(sDetailId));
             session.delete(sDetail);
             tx.commit();
+            logger.debug("Sequence detail deleted.");
         } catch (HibernateException hex) {
+            logger.error("Exception while attempting to delete sequence detail.");
             if (tx != null) {
                 tx.rollback();
+                logger.error("Rolling back sequence detail delete transaction.");
             }
             hex.printStackTrace();
         } finally {
             session.close();
+            logger.debug("Closing session.");
         }
     }
 }
