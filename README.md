@@ -2,6 +2,16 @@
 
 With this individual project, I hope to create a sequential timer web application, with the goal of providing an easily configured staging environment for people who struggle with executive disfunction. This app would allow you to set alarms to go off in order, and set delay timers to give yourself time to complete the tasks before the next alarm begins.
 
+The Notes folder contains a dump of my database, with test data. Only Tuesday and Saturday have actual fully configured timer sequences, but each day has a sequence set to start at noon.
+
+There is no user log in process. Eventual goal is to use Google OAuth2 profileIDs as user IDs. Test site uses hardcoded user ID.
+
+## Currently Implemented Features
+* Static timers
+* Sequential timers
+* Snooze for sequential timers only (accidentally deleted snooze for static timers and have yet to replace it)
+* Google Calendar and OAuth2 integration
+* Kittens!
 
 ### Planned Features
 * Static (anchor) timers - set to go off at a specific time
